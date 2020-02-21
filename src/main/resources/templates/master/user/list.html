@@ -1,0 +1,44 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sd="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User List</title>
+</head>
+<body>
+<h1>User</h1>
+<hr>
+<a th:href="@{/user/form}" type="button">Add</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="data : ${datas}">
+                <td th:text="${data.name}"></td>
+                <td th:text="${data.email}"></td>
+                <td th:text="${data.status}"></td>
+                <td>
+                   <a th:href="@{/user/form(id=${data.id})}" type="button">Edit</a>
+                   <a th:href="@{/user/remove(id=${data.id})}" type="button">Remove</a>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(datas.content)}">
+                <td>No data!</td>
+            </tr>
+        </tbody>
+
+    </table>
+<div>
+    <ul class="pagination" sd:pagination="full">
+
+    </ul>
+</div>
+</body>
+</html>

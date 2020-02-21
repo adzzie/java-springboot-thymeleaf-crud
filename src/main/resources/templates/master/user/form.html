@@ -1,0 +1,45 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sd="http://www.w3.org/1999/xhtml" >
+<head>
+    <meta charset="UTF-8">
+    <title>User Form</title>
+</head>
+<body>
+<h1>User</h1>
+<hr>
+<form th:object="${data}" th:method="post" th:action="@{/user/save}">
+    <input type="hidden" th:field="*{id}">
+    <div>
+        Name :
+        <input type="text" th:field="*{name}" >
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+    </div>
+    <div>
+        email :
+        <input type="email" th:field="*{email}" >
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    </div>
+    <div>
+        Password :
+        <input type="password" th:field="*{password}" >
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{pasword}"></span>
+    </div>
+    <div>
+        Password Confirm :
+        <input type="password" th:name="passwordConfirm" >
+    </div>
+    <div>
+        Status :
+        <select th:field="*{status}">
+            <option value="1">Active</option>
+            <option value="0">Not Active</option>
+        </select>
+    </div>
+    <div>
+        <button type="submit">Save</button>
+        <a type="button" th:href="@{/user}">Cancel</a>
+    </div>
+</form>
+</body>
+</html>
